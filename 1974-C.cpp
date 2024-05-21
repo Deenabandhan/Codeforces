@@ -19,25 +19,6 @@ bool isSame(string s)  { ll n=s.length(); for(ll i=1;i<n;i++) if(s[i]!=s[0]) ret
 #define vector std::vector
 #define set std::set
 #define string std::string
-ll solve(ll i){
-    ll x,y,a,b,c;
-    cin>>x>>y;
-    //if(i==1502) cout<<x<<" "<<y<<"\n";
-    a=(y/2)+(y%2==1);
-    if(y%2==1) y=7*a+4;
-    else y=7*a;
-    if(x<y) return(a);
-    else{
-        x-=y;
-        c=(x/15)+1-(x%15==0);
-        return(c+a);
-    }
-}
-int main(){
-    ios::sync_with_stdio(false),cin.tie(0);
-    ll tst;
-    cin>>tst;
-    ll ar[tst],i=0;
-    while(i<tst) ar[i]=solve(i),i++;
-    for(int i=0;i<tst;i++) cout<<ar[i]<<"\n";
+void solve(){
+    
 }

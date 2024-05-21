@@ -33,25 +33,31 @@ void solve(){
     string a;
     if(v%2!=0 Or h%2!=0) cout<<"NO\n";
     else{
-        v=0,h=0;
-        ll v1=0,h1=0;
+        ll e=0,w=0,n=0,st=0,t1=0,t2=0;
+        string a;
         for(auto i:s){
-            if(i=='N' Or i=='S'){
-                if(v1%2==0) a.push_back('R');
-                else a.push_back('H');
-                if(i=='N') v++;
-                else v--;
-                v1++;
+            if(i=='N'){
+                if(n%2==0) a.push_back('R'),t1++;
+                else a.push_back('H'),t2++;
+                n++;
             }
-            else{
-                if(h1%2==0) a.push_back('H');
-                else a.push_back('R');
-                if(i=='E') v++;
-                else v--;
-                h1++;
+            if(i=='S'){
+                if(st%2==0) a.push_back('R'),t1++;
+                else a.push_back('H'),t2++;
+                st++;
+            }
+            if(i=='E'){
+                if(e%2==1) a.push_back('R'),t1++;
+                else a.push_back('H'),t2++;
+                e++;
+            }
+            if(i=='W'){
+                if(w%2==1) a.push_back('R'),t1++;
+                else a.push_back('H'),t2++;
+                w++;
             }
         }
-        if((v1==2 And h1==0 And v==0) Or (h1==2 And v1==0 And h==0)) cout<<"NO\n";
+        if((t1==0) Or (t2==0)) cout<<"NO\n";
         else cout<<a<<"\n";
     }
 }
