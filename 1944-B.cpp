@@ -20,21 +20,35 @@ bool isSame(string s)  { ll n=s.length(); for(ll i=1;i<n;i++) if(s[i]!=s[0]) ret
 #define set std::set
 #define string std::string
 void solve(){
-    ll n,a=0;
-    cin>>n;
-    vector <ll> v(n);
-    for(auto &i:v) cin>>i;
-    map<vector<ll>,ll> mp;
-    for(int i=0;i<n-2;i++){
-        vector <ll> vt={v[i],v[i+1],v[i+2]};
-        vector<vector<ll>> vf={{0,v[i+1],v[i+2]},{v[i],0,v[i+2]},{v[i],v[i+1],0}};
-        for(auto i:vf){
-            a+=(mp[i]-mp[vt]);
-            mp[i]++;
-        }
-        mp[vt]++;
+    ll n,k;
+    cin>>n>>k;
+    vector<ll> v(2*n),l,r,o;
+    vector<ll> mp(n,0);
+    for(int i=0;i<2*n;i++){
+        cin>>v[i];
+        if(i<n) mp[v[i]-1]++;
     }
-    cout<<a<<"\n";
+    for(int i=0;i<n;i++){
+        if(mp[i]==0) r.push_back(i+1),r.push_back(i+1);
+        if(mp[i]==2) l.push_back(i+1),l.push_back(i+1);
+        if(mp[i]==1) o.push_back(i+1);
+    }
+    if(l.size()>2*k){
+        ll n1=l.size();
+        for(int i=0;i<n1-2*k;i++) l.pop_back(),r.pop_back();
+    }
+    if(l.size()<2*k){
+        ll n1=l.size();
+        for(int i=0;i<2*k-n1;i++) {
+            //cout<<o[i]<<" ";
+            l.push_back(o[i]);
+            r.push_back(o[i]);
+        }
+    }
+    for(auto i:l) cout<<i<<" ";
+    cout<<"\n";
+    for(auto i:r) cout<<i<<" ";
+    cout<<"\n";
 }
 int main(){
     ios::sync_with_stdio(false),cin.tie(0);

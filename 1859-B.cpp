@@ -20,21 +20,27 @@ bool isSame(string s)  { ll n=s.length(); for(ll i=1;i<n;i++) if(s[i]!=s[0]) ret
 #define set std::set
 #define string std::string
 void solve(){
-    ll n,a=0;
-    cin>>n;
-    vector <ll> v(n);
-    for(auto &i:v) cin>>i;
-    map<vector<ll>,ll> mp;
-    for(int i=0;i<n-2;i++){
-        vector <ll> vt={v[i],v[i+1],v[i+2]};
-        vector<vector<ll>> vf={{0,v[i+1],v[i+2]},{v[i],0,v[i+2]},{v[i],v[i+1],0}};
-        for(auto i:vf){
-            a+=(mp[i]-mp[vt]);
-            mp[i]++;
-        }
-        mp[vt]++;
+    ll nd;
+    cin>>nd;
+    vector<pair<ll,ll>> v(nd);
+    ll m=INT_MAX,mi=0,s=0,m1=INT_MAX,mu=0,s1;
+    for(int i=0;i<nd;i++){
+        ll n;
+        cin>>n;
+        vector<ll> tp(n);
+        for(auto &i:tp) cin>>i;
+        sort(tp.begin(),tp.end());
+        v[i]={tp[0],tp[1]};
+        s+=tp[1];
+        if(m>tp[0]) m=tp[0],mi=i;
+        if(m1>tp[1]) m1=tp[1],mu=i;
     }
-    cout<<a<<"\n";
+    s1=s;
+    s1-=v[mu].second;
+    s1+=v[mi].first;
+    s+=v[mi].first;
+    s-=v[mi].second;
+    cout<<max(s,s1)<<"\n";
 }
 int main(){
     ios::sync_with_stdio(false),cin.tie(0);
